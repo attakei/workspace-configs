@@ -1,0 +1,69 @@
+# -----------------
+# Taskfile for Sphinx documentation.
+#
+# Usage:
+#   - Copy this file, save into repos and include it.
+#   - Include directly (experimental features) 
+# -----------------
+version: '3'
+
+vars:
+  RUN_PYTHON: '{{ default "" .RUN_PYTHON }}'
+  SPHINX_ROOT_DIR: '{{ default "." .SPHINX_ROOT_DIR }}'
+  SPHINX_SOURCE_DIR: '{{ default "." .SPHINX_SOURCE_DIR }}'
+  SPHINX_OUTPUT_DIR: '{{ default "_build" .SPHINX_OUTPUT_DIR }}'
+  SPHINX_DEFAULT_BUILDER: '{{ default "dirhtml" .SPHINX_DEFAULT_BUILDER }}'
+  # For i18n ('intl' task)
+  SPHINX_ADDITIONAL_LANGUAGES: '{{ default "ja" .SPHINX_EXTRA_LANGUAGES  }}'
+  # For API documentations ('apidoc' task)
+  SPHINX_APIDOC_DIR: '{{ default "api/" .SPHINX_APIDOC_DIR }}'
+  # SPHINX_APIDOC_PACKAGE: ''
+
+tasks:
+  intl:
+    desc: 'Sync i18n environment'
+    dir: '{{.SPHINX_ROOT_DIR}}'
+    cmds:
+      - '{{.RUN_PYTHON}} sphinx-build -M gettext {{.SPHINX_SOURCE_DIR}} {{.SPHINX_OUTPUT_DIR}} {{.CLI_ARGS}}'
+      - '{{.RUN_PYTHON}} sphinx-intl update --language={{.SPHINX_ADDITIONAL_LANGUAGES | join ","}}'
+  dev:
+    desc: 'Run docs server'
+    dir: '{{.SPHINX_ROOT_DIR}}'
+    cmds:
+      - >
+        {{.RUN_PYTHON}} sphinx-autobuild
+        -b {{.SPHINX_DEFAULT_BUILDER}}
+        {{.SPHINX_SOURCE_DIR}} {{.SPHINX_OUTPUT_DIR}}/{{.SPHINX_DEFAULT_BUILD}}
+        {{.CLI_ARGS}}
+  apidoc:
+    desc: 'Update apidoc'
+    dir: '{{.SPHINX_ROOT_DIR}}'
+    cmds:
+      - >
+        {{.RUN_PYTHON}} sphinx-apidoc
+        --remove-old --separate --no-toc
+        --output-dir={{.SPHINX_APIDOC_DIR}}
+        {{.SPHINX_APIDOC_PACKAGE_PATH}}
+  build-*:
+    desc: 'Make docs'
+    dir: '{{.SPHINX_ROOT_DIR}}'
+    vars:
+      TARGET: '{{index .MATCH 0}}'
+    cmds:
+      - >
+        {{.RUN_PYTHON}} sphinx-build
+        -M {{.TARGET}}
+        {{.SPHINX_SOURCE_DIR}} {{.SPHINX_OUTPUT_DIR}}
+        {{.CLI_ARGS}}
+  build:
+    desc: 'Make docs (default target)'
+    deps:
+      - 'build-{{.SPHINX_DEFAULT_BUILDER}}'
+  help:
+    desc: 'Display help of docs'
+    deps:
+      - 'build-help'
+  clean:
+    desc: 'Clean build files of docs'
+    deps:
+      - 'build-clean'
