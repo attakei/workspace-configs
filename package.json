@@ -1,6 +1,5 @@
 {
-  "name": "workspace-configs",
-  "private": true,
+  "name": "@attakei/workspace-configs",
   "version": "0.2.0",
   "description": "",
   "scripts": {},
