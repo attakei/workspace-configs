@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "enabledManagers": ["custom.jsonata"],
+  "customManagers": [
+    {
+      "customType": "jsonata",
+      "fileFormat": "yaml",
+      "managerFilePatterns": [
+        "/(t|T)askfile.ya?ml/",
+        "/(t|T)askfile.dist.ya?ml/"
+      ],
+      "matchStrings": [
+        "includes[].$each(function ($v) {{\"depName\": $match($v.taskfile, /github.com\\/(.+).git/, 1).groups[0],\"currentValue\": $match($v.taskfile, /\\?tag=(.+)/, 1).groups[0]}})"
+      ],
+      "datasourceTemplate": "github-tags"
+    }
+  ],
+  "packageRules": [
+    {
+      "groupName": "workspace-configs",
+      "matchDatasources": ["github-tags"],
+      "matchDepNames": "attakei/workspace-configs"
+    }
+  ]
+}
