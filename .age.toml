@@ -1,0 +1,18 @@
+current_version = "0.2.0"
+
+[[files]]
+path = "CHANGELOG.md"
+search = "# Changelogs"
+replace = """
+# Changelogs
+
+## {{new_version}}
+
+Date: {{nowFormat.dateISO}} - Asia/Tokyo
+
+"""
+
+[[files]]
+path = "package.json"
+search = "\"version\": \"{{current_version}}\","
+replace = "\"version\": \"{{new_version}}\","
