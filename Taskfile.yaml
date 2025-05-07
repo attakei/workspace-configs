@@ -1,0 +1,18 @@
+# -----------------
+# Taskfile for workspace-configs itself.
+# -----------------
+version: '3'
+
+vars:
+  run_npm: 'pnpm'
+
+tasks:
+  setup:
+    description: 'Setup workspace for development'
+    cmds:
+      - '{{.run_npm}} install'
+  verify:
+    description: 'Health check all files'
+    cmds:
+      - 'lefthook run pre-commit --all-files'
+      - '{{.run_npm}} renovate-config-validator renovate/*'
