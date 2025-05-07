@@ -1,5 +1,11 @@
 # Changelogs
 
+## 0.2.0
+
+Date: 2025/05/08 Asia/Tokyo
+
+- Breaking changes: Move folder to manage projects from root to 'projects'.
+
 ## 0.1.1
 
 Date: 2025/05/07 Asia/Tokyo
