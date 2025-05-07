@@ -16,3 +16,10 @@ tasks:
     cmds:
       - 'lefthook run pre-commit --all-files'
       - '{{.run_npm}} renovate-config-validator renovate/*'
+  release-*:
+    desc: 'Run release process'
+    vars:
+      LEVEL: '{{index .MATCH 0}}'
+    cmds:
+      - 'age {{.LEVEL}}'
+      - 'pnpm install'  # To write out as lock-file
