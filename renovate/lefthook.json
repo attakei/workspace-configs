@@ -5,10 +5,7 @@
     {
       "customType": "jsonata",
       "fileFormat": "yaml",
-      "managerFilePatterns": [
-        "/lefthook.(yml|yaml|toml|json)/",
-        "/.lefthook.(yml|yaml|toml|json)/"
-      ],
+      "managerFilePatterns": ["/lefthook.ya?ml/", "/.lefthook.ya?ml/"],
       "matchStrings": [
         "remotes[].{\"depName\": $split(git_url, \"github.com/\")[1], \"currentValue\": ref}"
       ],
