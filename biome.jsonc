@@ -1,0 +1,11 @@
+{
+  /**
+   * This is common settings of attakei's workspace.
+   *
+   * It is used for settings of biome LSP (NeoVim and others).
+   */
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "formatter": {
+    "indentStyle": "space"
+  }
+}
