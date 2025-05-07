@@ -1,0 +1,11 @@
+{
+  "name": "workspace-configs",
+  "private": true,
+  "version": "0.1.1",
+  "description": "",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "packageManager": "pnpm@10.6.5"
+}
