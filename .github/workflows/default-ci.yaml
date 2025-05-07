@@ -1,0 +1,27 @@
+name: 'Run default CI jobs'
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+  pull_request:
+  workflow_dispatch:
+
+env:
+  UV_NO_SYNC: 1
+  TASK_X_REMOTE_TASKFILES: 1
+
+jobs:
+  lint-all:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: 'jdx/mise-action@v2'
+      - name: Set up workspace
+        run: |
+          task setup
+      - name: Lint by lefthook
+        run: |
+          lefthook run pre-commit --all-files
