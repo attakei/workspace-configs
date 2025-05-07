@@ -17,9 +17,18 @@
   ],
   "packageRules": [
     {
-      "groupName": "workspace-configs",
+      "groupName": "taskfile",
       "matchDatasources": ["github-tags"],
-      "matchDepNames": "attakei/workspace-configs"
+      "matchFileNames": [
+        "Taskfile.yml",
+        "taskfile.yml",
+        "Taskfile.yaml",
+        "taskfile.yaml",
+        "Taskfile.dist.yml",
+        "taskfile.dist.yml",
+        "Taskfile.dist.yaml",
+        "taskfile.dist.yaml"
+      ]
     }
   ]
 }

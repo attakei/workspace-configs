@@ -14,9 +14,14 @@
   ],
   "packageRules": [
     {
-      "groupName": "workspace-configs",
+      "groupName": "lefthook",
       "matchDatasources": ["github-tags"],
-      "matchDepNames": "attakei/workspace-configs"
+      "matchFileNames": [
+        "lefthook.yml",
+        ".lefthook.yml",
+        "lefthook.yaml",
+        ".lefthook.yaml"
+      ]
     }
   ]
 }
