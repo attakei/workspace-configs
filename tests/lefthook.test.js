@@ -6,6 +6,12 @@ import renovateConfig from "../renovate/lefthook.json";
 
 describe("YAML monitor", () => {
   describe("matchString (try JSONata)", () => {
+    test("None remotes", async () => {
+      const data = yaml.parse("");
+      const exp = jsonata(renovateConfig.customManagers[0].matchStrings[0]);
+      const result = await exp.evaluate(data);
+      expect(result).toBeUndefined();
+    });
     test("Valid", async () => {
       const data = yaml.parse(`
       remotes:
