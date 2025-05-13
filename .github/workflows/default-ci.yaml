@@ -25,3 +25,14 @@ jobs:
       - name: Lint by lefthook
         run: |
           lefthook run pre-commit --all-files
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: 'jdx/mise-action@v2'
+      - name: Set up workspace
+        run: |
+          task setup
+      - name: Run tests
+        run: |
+          pnpm test
