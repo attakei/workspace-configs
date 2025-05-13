@@ -6,4 +6,11 @@
   "enabledManagers": [
     "github-actions", "npm"
   ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["renovate"],
+      "matchUpdateTypes": ["major"],
+      "enabled": true,
+    }
+  ]
 }
