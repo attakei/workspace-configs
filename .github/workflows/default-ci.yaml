@@ -24,7 +24,7 @@ jobs:
           task setup
       - name: Lint by lefthook
         run: |
-          lefthook run pre-commit --all-files
+          task verify
   test:
     runs-on: ubuntu-latest
     steps:
