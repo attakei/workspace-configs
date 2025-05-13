@@ -16,6 +16,21 @@ tasks:
     cmds:
       - 'lefthook run pre-commit --all-files'
       - '{{.run_npm}} renovate-config-validator renovate/*'
+  dry-run:
+    description: 'Dry run Renovate.'
+    env:
+      RENOVATE_CONFIG_FILE: './renovate.json5'
+      RENOVATE_TOKEN:
+        sh: 'gh auth token'
+    vars:
+      repo_name: '{{ default "attakei/workspace-configs" .CLI_ARGS }}'
+    cmds:
+      - >
+        npx renovate
+        --dry-run
+        --schedule=
+        --require-config=ignored
+        {{.repo_name}}
   release-*:
     desc: 'Run release process'
     vars:
