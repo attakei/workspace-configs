@@ -6,7 +6,7 @@
   "keywords": [],
   "author": "",
   "license": "Apache-2.0",
-  "packageManager": "pnpm@10.10.0",
+  "packageManager": "pnpm@10.11.0",
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "renovate": "^40.8.0"
