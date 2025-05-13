@@ -11,6 +11,11 @@
       "matchPackageNames": ["renovate"],
       "matchUpdateTypes": ["major"],
       "enabled": true,
+    },
+    {
+      "matchPackageNames": ["renovate"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "enabled": false,
     }
   ]
 }
