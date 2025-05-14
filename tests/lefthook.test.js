@@ -11,6 +11,7 @@ describe("YAML monitor", () => {
       "lefthook.yml",
       ".lefthook.yaml",
       ".lefthook.yml",
+      "sub/lefthook.yml",
     ])("Matched: %s", (filename) => {
       const patterns = renovateConfig.customManagers[0].managerFilePatterns;
       expect(
