@@ -9,7 +9,7 @@
         "/(t|T)askfile.dist.ya?ml/"
       ],
       "matchStrings": [
-        "includes[].$each(function ($v) {{\"depName\": $match($v.taskfile, /github.com\\/(.+).git/, 1).groups[0],\"currentValue\": $match($v.taskfile, /\\?tag=(.+)/, 1).groups[0]}})"
+        "$map(includes.*.{ \"taskfile\": taskfile }[taskfile ~> /github\\.com\\/.+\\.git/], function($v) {{ \"depName\": $match($v.taskfile, /github.com\\/(.+)\\.git/, 1).groups[0], \"currentValue\": $match($v.taskfile, /\\?(tag|ref)=(.+)/, 1).groups[1] }})"
       ],
       "datasourceTemplate": "github-tags"
     }
