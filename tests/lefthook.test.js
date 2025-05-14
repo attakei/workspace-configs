@@ -5,6 +5,25 @@ import yaml from "yaml";
 import renovateConfig from "../renovate/lefthook.json";
 
 describe("YAML monitor", () => {
+  describe("matchFilePatterns", () => {
+    test.each([
+      "lefthook.yaml",
+      "lefthook.yml",
+      ".lefthook.yaml",
+      ".lefthook.yml",
+    ])("Matched: %s", (filename) => {
+      const patterns = renovateConfig.customManagers[0].managerFilePatterns;
+      expect(
+        patterns.filter((p) => filename.match(new RegExp(p.slice(1, -1)))),
+      ).not.toHaveLength(0);
+    });
+    test.each(["lefthook.json"])("Unmatched: %s", (filename) => {
+      const patterns = renovateConfig.customManagers[0].managerFilePatterns;
+      expect(
+        patterns.filter((p) => filename.match(new RegExp(p.slice(1, -1)))),
+      ).toHaveLength(0);
+    });
+  });
   describe("matchString (try JSONata)", () => {
     test("None remotes", async () => {
       const data = yaml.parse("");
