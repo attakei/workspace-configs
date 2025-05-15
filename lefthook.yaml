@@ -11,8 +11,12 @@ pre-commit:
   jobs:
     - name: 'Auto-build Renovate Configurations'
       glob: 'renovate/*.yaml'
-      run: '{run_npm} build {staged_files}'
-    - run: 'git add renovate/*.json'
+      group:
+        piped: true
+        jobs:
+          - run: '{run_npm} build {staged_files}'
+          # TODO: Find correctly method.
+          # - run: 'git add renovate/*.json'
   commands:
     biome:
       glob: '*.{js,json,jsonc}'
