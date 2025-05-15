@@ -9,7 +9,7 @@
         "/(t|T)askfile.dist.ya?ml/"
       ],
       "matchStrings": [
-        "$map(includes.*.{ \"taskfile\": taskfile }[taskfile ~> /github\\.com\\/.+\\.git/], function($v) {{ \"depName\": $match($v.taskfile, /github.com\\/(.+)\\.git/, 1).groups[0], \"currentValue\": $match($v.taskfile, /\\?(tag|ref)=(.+)/, 1).groups[1] }})"
+        "$map(  includes.*.{ \"taskfile\": taskfile }[taskfile ~> /github\\.com\\/.+\\.git/],  function($v) {    {      \"depName\": $match($v.taskfile, /github.com\\/(.+)\\.git/, 1).groups[0],      \"currentValue\": $match($v.taskfile, /\\?(tag|ref)=(.+)/, 1).groups[1]    }  })"
       ],
       "datasourceTemplate": "github-tags"
     }
@@ -17,7 +17,9 @@
   "packageRules": [
     {
       "groupName": "taskfile",
-      "matchDatasources": ["github-tags"],
+      "matchDatasources": [
+        "github-tags"
+      ],
       "matchFileNames": [
         "Taskfile.yml",
         "taskfile.yml",

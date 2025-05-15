@@ -4,9 +4,12 @@
     {
       "customType": "jsonata",
       "fileFormat": "yaml",
-      "managerFilePatterns": ["/lefthook.ya?ml/", "/.lefthook.ya?ml/"],
+      "managerFilePatterns": [
+        "/lefthook.ya?ml/",
+        "/.lefthook.ya?ml/"
+      ],
       "matchStrings": [
-        "remotes[].{\"depName\": $split(git_url, \"github.com/\")[1], \"currentValue\": ref}"
+        "remotes[].{  \"depName\": $split(git_url, \"github.com/\")[1],  \"currentValue\": ref}"
       ],
       "datasourceTemplate": "github-tags"
     }
@@ -14,7 +17,9 @@
   "packageRules": [
     {
       "groupName": "lefthook",
-      "matchDatasources": ["github-tags"],
+      "matchDatasources": [
+        "github-tags"
+      ],
       "matchFileNames": [
         "lefthook.yml",
         ".lefthook.yml",
