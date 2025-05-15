@@ -11,6 +11,12 @@ importers:
       '@biomejs/biome':
         specifier: 1.9.4
         version: 1.9.4
+      commander:
+        specifier: ^13.1.0
+        version: 13.1.0
+      glob:
+        specifier: ^11.0.2
+        version: 11.0.2
       jest:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@22.15.17)
