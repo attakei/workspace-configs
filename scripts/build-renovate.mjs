@@ -13,5 +13,13 @@ for (const src of glob.globSync(`${program.args[0]}/*.yaml`)) {
   const dest = src.replace(/\.yaml$/, ".json");
   console.debug(`Build from ${src}\n  to ${dest}`);
   const config = yaml.parse(readFileSync(src, { encoding: "utf8" }));
+  if (config.customManagers) {
+    for (const mgr of config.customManagers) {
+      if (!mgr.matchStrings) {
+        continue;
+      }
+      mgr.matchStrings = mgr.matchStrings.map((ms) => ms.replaceAll("\n", ""));
+    }
+  }
   writeFileSync(dest, JSON.stringify(config, null, 2));
 }
