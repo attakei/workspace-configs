@@ -1,6 +1,6 @@
 {
   "name": "@attakei/workspace-configs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js tests"
