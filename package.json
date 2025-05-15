@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js tests",
-    "build": "node scripts/build-renovate.mjs renovate"
+    "build": "node scripts/build-renovate.mjs"
   },
   "type": "module",
   "keywords": [],
