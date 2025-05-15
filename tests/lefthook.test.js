@@ -1,8 +1,11 @@
-import { readFile } from "node:fs/promises";
+import { readFileSync } from "node:fs";
 import jsonata from "jsonata";
 import yaml from "yaml";
 
-import renovateConfig from "../renovate/lefthook.json";
+const renovateConfig = yaml.parse(
+  // NOTE: Relative path from project root.
+  readFileSync("renovate/lefthook.yaml", { encoding: "utf8" }),
+);
 
 describe("YAML monitor", () => {
   describe("matchFilePatterns", () => {
