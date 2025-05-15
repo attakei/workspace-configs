@@ -1,4 +1,7 @@
 ---
+# ------
+# Configuration for Task (go-task).
+# ------
 $schema: 'https://docs.renovatebot.com/renovate-schema.json'
 customManagers:
   - customType: 'jsonata'
@@ -7,6 +10,7 @@ customManagers:
       - '/(t|T)askfile.ya?ml/'
       - '/(t|T)askfile.dist.ya?ml/'
     matchStrings:
+      # Case for Git repository (HTTP and SSH)
       - >
         $map(
           includes.*.{ "taskfile": taskfile }[taskfile ~> /github\.com\/.+\.git/],
