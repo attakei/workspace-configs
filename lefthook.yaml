@@ -15,7 +15,7 @@ pre-commit:
     - run: 'git add renovate/*.json'
   commands:
     biome:
-      glob: '*.{json,jsonc}'
+      glob: '*.{js,json,jsonc}'
       exclude:
         - 'renovate/*.json'
       run: '{run_npm} biome check --write {staged_files}'
