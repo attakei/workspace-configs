@@ -20,7 +20,7 @@ function compile(src, dest) {
   writeFileSync(dest, JSON.stringify(config, null, 2));
 }
 
-program.argument("[string]").parse();
+program.argument("[string...]").parse();
 
 if (program.args.length > 0) {
   for (const src of program.args) {
