@@ -1,0 +1,33 @@
+---
+$schema: 'https://docs.renovatebot.com/renovate-schema.json'
+customManagers:
+  - customType: 'jsonata'
+    fileFormat: 'yaml'
+    managerFilePatterns:
+      - '/(t|T)askfile.ya?ml/'
+      - '/(t|T)askfile.dist.ya?ml/'
+    matchStrings:
+      - >
+        $map(
+          includes.*.{ "taskfile": taskfile }[taskfile ~> /github\.com\/.+\.git/],
+          function($v) {
+            {
+              "depName": $match($v.taskfile, /github.com\/(.+)\.git/, 1).groups[0],
+              "currentValue": $match($v.taskfile, /\?(tag|ref)=(.+)/, 1).groups[1]
+            }
+          }
+        )
+    datasourceTemplate: 'github-tags'
+packageRules:
+  - groupName: 'taskfile'
+    matchDatasources:
+      - 'github-tags'
+    matchFileNames:
+      - 'Taskfile.yml'
+      - 'taskfile.yml'
+      - 'Taskfile.yaml'
+      - 'taskfile.yaml'
+      - 'Taskfile.dist.yml'
+      - 'taskfile.dist.yml'
+      - 'Taskfile.dist.yaml'
+      - 'taskfile.dist.yaml'

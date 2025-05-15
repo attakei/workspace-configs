@@ -1,7 +1,11 @@
+import { readFileSync } from "node:fs";
 import jsonata from "jsonata";
 import yaml from "yaml";
 
-import renovateConfig from "../renovate/taskfile.json";
+const renovateConfig = yaml.parse(
+  // NOTE: Relative path from project root.
+  readFileSync("renovate/taskfile.yaml", { encoding: "utf8" }),
+);
 
 describe("YAML monitor", () => {
   describe("matchFilePatterns", () => {
