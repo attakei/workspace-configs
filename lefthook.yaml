@@ -11,5 +11,7 @@ pre-commit:
   commands:
     biome:
       glob: '*.{json,jsonc}'
+      exclude:
+        - 'renovate/*.json'
       run: '{run_npm} biome check --write {staged_files}'
       stage_fixed: true
