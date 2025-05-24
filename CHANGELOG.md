@@ -1,5 +1,14 @@
 # Changelogs
 
+## 0.4.0
+
+Date: 2025-05-25 - Asia/Tokyo
+
+- Breaking changes: Rename project and rule file.
+  This is to collect rules for Python into same folder.
+  - Project: from 'python-astral' to 'python'.
+  - Lefthook rule of 'python' project: from 'lefthook.yaml' to 'lefthook-astral.yaml'.
+
 ## 0.3.0
 
 Date: 2025-05-25 - Asia/Tokyo
