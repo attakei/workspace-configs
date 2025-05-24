@@ -1,5 +1,12 @@
 # Changelogs
 
+## 0.3.0
+
+Date: 2025-05-25 - Asia/Tokyo
+
+- New domain: python-astral
+  - Add lefthook rule.
+
 ## 0.2.1
 
 Date: 2025-05-15 - Asia/Tokyo
