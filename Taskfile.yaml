@@ -10,12 +10,17 @@ tasks:
   setup:
     description: 'Setup workspace for development'
     cmds:
-      - '{{.run_npm}} install'
+      - 'deno install'
   verify:
     description: 'Health check all files'
     cmds:
       - 'lefthook run pre-commit --all-files'
-      - '{{.run_npm}} renovate-config-validator renovate/*'
+      - >
+        deno run
+        --allow-env
+        --allow-read
+        --allow-sys
+        npm:renovate/renovate-config-validator renovate/*
   dry-run:
     description: 'Dry run Renovate.'
     env:
@@ -26,7 +31,14 @@ tasks:
       repo_name: '{{ default "attakei/workspace-configs" .CLI_ARGS }}'
     cmds:
       - >
-        npx renovate
+        deno run
+        --allow-env
+        --allow-net
+        --allow-read
+        --allow-run
+        --allow-sys
+        --allow-write
+        npm:renovate/renovate
         --dry-run
         --schedule=
         --require-config=ignored
@@ -37,4 +49,4 @@ tasks:
       LEVEL: '{{index .MATCH 0}}'
     cmds:
       - 'age {{.LEVEL}}'
-      - 'pnpm install'  # To write out as lock-file
+      - 'deno cache .'  # To write out as lock-file
