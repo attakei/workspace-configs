@@ -1,6 +1,6 @@
-import jsonata from "npm:jsonata";
 import { expect } from "jsr:@std/expect";
 import * as yaml from "jsr:@std/yaml";
+import jsonata from "jsonata";
 
 import renovateConfig from "../renovate/taskfile.json" with { type: "json" };
 
