@@ -4,9 +4,9 @@
     {
       "customType": "jsonata",
       "fileFormat": "json",
-      "managerFilePatterns": ["/deno.jsonc?/"],
+      "managerFilePatterns": ["/deno.jsonc?$/"],
       "matchStrings": [
-        "imports.*[$ ~> /npm:/ ][].$substring($, 4).[$split($, \"@\")].{\"depName\": $[0], \"currentValue\": $[1]}"
+        "$map($filter(imports.*, function ($v) {$v ~> /npm:/ }), function($v){{\"depName\": $split($substring($v, 4), '@')[0], \"currentValue\": $split($substring($v, 4), '@')[1]}})"
       ],
       "datasourceTemplate": "npm"
     }
