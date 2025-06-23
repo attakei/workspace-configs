@@ -3,13 +3,10 @@
 # ------
 min_version: 1.10.10
 
-templates:
-  run_npm: 'pnpm'
-
 pre-commit:
   parallel: true
   commands:
     biome:
       glob: '*.{ts,json,jsonc}'
-      run: '{run_npm} biome check --write {staged_files}'
+      run: 'biome check --write {staged_files}'
       stage_fixed: true
