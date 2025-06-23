@@ -10,6 +10,6 @@ pre-commit:
   parallel: true
   commands:
     biome:
-      glob: '*.{json,jsonc}'
+      glob: '*.{ts,json,jsonc}'
       run: '{run_npm} biome check --write {staged_files}'
       stage_fixed: true

@@ -1,36 +1,41 @@
-import jsonata from "jsonata";
-import yaml from "yaml";
+import jsonata from "npm:jsonata";
+import { expect } from "jsr:@std/expect";
+import * as yaml from "jsr:@std/yaml";
 
-import renovateConfig from "../renovate/taskfile.json";
+import renovateConfig from "../renovate/taskfile.json" with { type: "json" };
 
-describe("YAML monitor", () => {
-  describe("matchFilePatterns", () => {
-    test.each([
+Deno.test("YAML monitor", async (t) => {
+  await t.step("matchFilePatterns", async (t) => {
+    for (const filename of [
       "Taskfile.yaml",
       "Taskfile.yml",
       "Taskfile.dist.yaml",
       "sub/Taskfile.yml",
-    ])("Matched: %s", (filename) => {
-      const patterns = renovateConfig.customManagers[0].managerFilePatterns;
-      expect(
-        patterns.filter((p) => filename.match(new RegExp(p.slice(1, -1)))),
-      ).not.toHaveLength(0);
-    });
-    test.each(["taskfile.json"])("Unmatched: %s", (filename) => {
-      const patterns = renovateConfig.customManagers[0].managerFilePatterns;
-      expect(
-        patterns.filter((p) => filename.match(new RegExp(p.slice(1, -1)))),
-      ).toHaveLength(0);
-    });
+    ]) {
+      await t.step(`Matched: ${filename}`, async () => {
+        const patterns = renovateConfig.customManagers[0].managerFilePatterns;
+        expect(
+          patterns.filter((p) => filename.match(new RegExp(p.slice(1, -1)))),
+        ).not.toHaveLength(0);
+      });
+    }
+    for (const filename of ["taskfile.json"]) {
+      await t.step(`Unmatched: ${filename}`, async () => {
+        const patterns = renovateConfig.customManagers[0].managerFilePatterns;
+        expect(
+          patterns.filter((p) => filename.match(new RegExp(p.slice(1, -1)))),
+        ).toHaveLength(0);
+      });
+    }
   });
-  describe("matchString (try JSONata)", () => {
-    test("None remotes", async () => {
+  await t.step("matchString (try JSONata)", async (t) => {
+    await t.step("None remotes", async () => {
       const data = yaml.parse("");
       const exp = jsonata(renovateConfig.customManagers[0].matchStrings[0]);
       const result = await exp.evaluate(data);
       expect(result).toBeUndefined();
     });
-    test("Matched single element", async () => {
+    await t.step("Matched single element", async () => {
       const data = yaml.parse(`
       includes:
         docs:
@@ -42,7 +47,7 @@ describe("YAML monitor", () => {
       expect(result.depName).toBe("attakei/workspace-configs");
       expect(result.currentValue).toBe("v0.2.0");
     });
-    test("Matched multiple element", async () => {
+    await t.step("Matched multiple element", async () => {
       const data = yaml.parse(`
       includes:
         demo:
@@ -55,7 +60,7 @@ describe("YAML monitor", () => {
       expect(result).toBeDefined();
       expect(result).toHaveLength(2);
     });
-    test("Matched one element only", async () => {
+    await t.step("Matched one element only", async () => {
       const data = yaml.parse(`
       includes:
         demo:
@@ -69,7 +74,7 @@ describe("YAML monitor", () => {
       expect(result.depName).toBe("attakei/workspace-configs");
       expect(result.currentValue).toBe("v0.2.0");
     });
-    test("Unmatched local", async () => {
+    await t.step("Unmatched local", async () => {
       const data = yaml.parse(`
       includes:
         docs:
