@@ -11,8 +11,3 @@ replace = """
 Date: {{nowFormat.dateISO}} - Asia/Tokyo
 
 """
-
-[[files]]
-path = "package.json"
-search = "\"version\": \"{{current_version}}\","
-replace = "\"version\": \"{{new_version}}\","
