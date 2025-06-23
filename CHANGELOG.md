@@ -1,5 +1,17 @@
 # Changelogs
 
+## 0.5.0
+
+Date: 2025-06-24 - Asia/Tokyo
+
+- New renovate: deno
+  - Simple monitor `deno.json`.
+    This can only check none-scoped packages.
+- Misc:
+  - Use Deno runtime to test Renovate config.
+  - Migrate CLI management from mise to aqua.
+
+
 ## 0.4.0
 
 Date: 2025-05-25 - Asia/Tokyo
