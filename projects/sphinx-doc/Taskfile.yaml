@@ -17,7 +17,7 @@ vars:
   SPHINX_ADDITIONAL_LANGUAGES: '{{ default "ja" .SPHINX_EXTRA_LANGUAGES  }}'
   # For API documentations ('apidoc' task)
   SPHINX_APIDOC_DIR: '{{ default "api/" .SPHINX_APIDOC_DIR }}'
-  SPHINX_APIDOC_PACKAGE_PATH: ''
+  SPHINX_APIDOC_PACKAGE_PATH: '{{ .SPHINX_APIDOC_PACKAGE_PATH }}'
 
 tasks:
   intl:
