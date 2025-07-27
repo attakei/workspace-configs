@@ -13,5 +13,5 @@ registries:
 packages:
 - name: denoland/deno@v2.3.6
 - name: biomejs/biome@cli/v1.9.4
-- name: go-task/task@v3.44.0
+- name: go-task/task@v3.44.1
 - name: evilmartians/lefthook@v1.11.14
