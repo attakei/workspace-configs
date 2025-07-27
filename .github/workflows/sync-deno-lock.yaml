@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: aquaproj/aqua-installer@d1fe50798dbadd4eb5b98957290ca175f6b4870f  # v4.0.2
         with:
-          aqua_version: v2.51.2
+          aqua_version: v2.53.6
       - name: 'Update files'
         run: |
           deno cache .
