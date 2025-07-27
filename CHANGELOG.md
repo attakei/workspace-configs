@@ -1,5 +1,12 @@
 # Changelogs
 
+## 0.5.1
+
+Date: 2025-07-27 - Asia/Tokyo
+
+- Fix: 'sphinx-doc' project
+  - Configure to refer `SPHINX_APIDOC_PACKAGE_PATH` from outside that includes it.
+
 ## 0.5.0
 
 Date: 2025-06-24 - Asia/Tokyo
