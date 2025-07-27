@@ -10,16 +10,6 @@
   "schedule": [
     "* 9-21 * * 0,6",
   ],
-  "packageRules": [
-    {
-      "matchPackageNames": ["renovate"],
-      "matchUpdateTypes": ["major"],
-      "enabled": true,
-    },
-    {
-      "matchPackageNames": ["renovate"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "enabled": false,
-    }
-  ]
+  // NOTE: Set explicitly false when you want not to merge automately.
+  "automerge": true,
 }
