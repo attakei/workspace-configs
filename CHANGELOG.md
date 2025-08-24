@@ -1,5 +1,16 @@
 # Changelogs
 
+## 0.6.0
+
+Date: 2025-08-25 - Asia/Tokyo
+
+- New feature: sphinx-doc project
+  - Add supports for snippet reST files.
+  - Drop supporting lefthook version < 1.10.10
+- Infrastructure changes:
+  - Migrate from Deno to Bun runtime
+  - Fix: Sync biome version for cli and schema
+
 ## 0.5.1
 
 Date: 2025-07-27 - Asia/Tokyo
