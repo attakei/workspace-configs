@@ -8,5 +8,5 @@ pre-commit:
   commands:
     biome:
       glob: '*.{ts,json,jsonc}'
-      run: 'biome check --write {staged_files}'
+      run: 'bun x biome check --write {staged_files}'
       stage_fixed: true

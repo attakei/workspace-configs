@@ -4,7 +4,6 @@
     "config:recommended",
     ":dependencyDashboard",
     "github>aquaproj/aqua-renovate-config#2.8.2",
-    "github>attakei/workspace-configs//renovate/deno",
   ],
   "timezone": "Asia/Tokyo",
   "schedule": [
