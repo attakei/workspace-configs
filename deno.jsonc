@@ -1,5 +1,0 @@
-{
-  "imports": {
-    "jsonata": "npm:jsonata@^2.0.6"
-  }
-}

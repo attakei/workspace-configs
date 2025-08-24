@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "jsonata": "^2.1.0"
+  },
+  "name": "workspace-configs",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.2",
+    "@types/bun": "latest",
+    "renovate": "^41.82.10"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

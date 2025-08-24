@@ -3,24 +3,16 @@
 # -----------------
 version: '3'
 
-vars:
-  run_npm: 'pnpm'
-
 tasks:
   setup:
     description: 'Setup workspace for development'
     cmds:
-      - 'deno install'
+      - 'bun install'
   verify:
     description: 'Health check all files'
     cmds:
       - 'lefthook run pre-commit --all-files'
-      - >
-        deno run
-        --allow-env
-        --allow-read
-        --allow-sys
-        npm:renovate/renovate-config-validator renovate/*
+      - 'bun x renovate-config-validator renovate/*'
   dry-run:
     description: 'Dry run Renovate.'
     env:
@@ -30,23 +22,10 @@ tasks:
     vars:
       repo_name: '{{ default "attakei/workspace-configs" .CLI_ARGS }}'
     cmds:
-      - >
-        deno run
-        --allow-env
-        --allow-net
-        --allow-read
-        --allow-run
-        --allow-sys
-        --allow-write
-        npm:renovate/renovate
-        --dry-run
-        --schedule=
-        --require-config=ignored
-        {{.repo_name}}
+      - 'bun x renovate --dry-run --schedule= --require-config=ignored {{.repo_name}}'
   release-*:
     desc: 'Run release process'
     vars:
       LEVEL: '{{index .MATCH 0}}'
     cmds:
       - 'age {{.LEVEL}}'
-      - 'deno cache .'  # To write out as lock-file
