@@ -1,49 +1,44 @@
-import { expect } from "jsr:@std/expect";
-import * as yaml from "jsr:@std/yaml";
+import yaml from "js-yaml";
 import jsonata from "jsonata";
 
 import renovateConfig from "../renovate/lefthook.json" with { type: "json" };
 
-Deno.test("YAML monitor", async (t) => {
-  await t.step("matchFilePatterns", async (t) => {
-    for (const filename of [
+describe("YAML monitor", () => {
+  describe("matchFilePatterns", () => {
+    test.each([
       "lefthook.yaml",
       "lefthook.yml",
       ".lefthook.yaml",
       ".lefthook.yml",
       "sub/lefthook.yml",
-    ]) {
-      await t.step(`Matched: ${filename}`, () => {
-        const patterns = renovateConfig.customManagers[0].managerFilePatterns;
-        expect(
-          patterns.filter((p) => filename.match(new RegExp(p.slice(1, -1)))),
-        ).not.toHaveLength(0);
-      });
-    }
-    for (const filename of ["lefthook.json"]) {
-      await t.step(`Unmatched: ${filename}`, () => {
-        const patterns = renovateConfig.customManagers[0].managerFilePatterns;
-        expect(
-          patterns.filter((p) => filename.match(new RegExp(p.slice(1, -1)))),
-        ).toHaveLength(0);
-      });
-    }
+    ])("'%p' is target.", (filename) => {
+      const patterns = renovateConfig.customManagers[0].managerFilePatterns;
+      expect(
+        patterns.filter((p) => filename.match(new RegExp(p.slice(1, -1)))),
+      ).not.toHaveLength(0);
+    });
+    test.each(["lefthook.json"])("'%p' is not target.", (filename) => {
+      const patterns = renovateConfig.customManagers[0].managerFilePatterns;
+      expect(
+        patterns.filter((p) => filename.match(new RegExp(p.slice(1, -1)))),
+      ).toHaveLength(0);
+    });
   });
-  await t.step("matchString (try JSONata)", async (t) => {
-    await t.step("None remotes", async () => {
-      const data = yaml.parse("");
+  describe("matchString (try JSONata)", () => {
+    test("None remotes", async () => {
+      const data = yaml.load("");
       const exp = jsonata(renovateConfig.customManagers[0].matchStrings[0]);
       const result = await exp.evaluate(data);
       expect(result).toBeUndefined();
     });
-    await t.step("Valid", async () => {
-      const data = yaml.parse(`
-      remotes:
-        - git_url: 'https://github.com/attakei/workspace-configs'
-          ref: 'v0.2.0'
-          configs:
-            - 'projects/sphinx-doc/lefthook.yaml'
-    `);
+    test("Valid", async () => {
+      const data = yaml.load(`
+        remotes:
+          - git_url: 'https://github.com/attakei/workspace-configs'
+            ref: 'v0.2.0'
+            configs:
+              - 'projects/sphinx-doc/lefthook.yaml'
+      `);
       const exp = jsonata(renovateConfig.customManagers[0].matchStrings[0]);
       const result = await exp.evaluate(data);
       expect(result).toHaveLength(1);

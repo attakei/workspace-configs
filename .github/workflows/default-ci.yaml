@@ -39,4 +39,4 @@ jobs:
           task setup
       - name: Run tests
         run: |
-          deno test
+          bun test
