@@ -1,10 +1,12 @@
 # ------
 # Hooks for reStructuredText.
 # ------
-min_version: 1.10.8
+min_version: 1.10.10
 
 pre-commit:
   commands:
     doc8:
-      glob: '*.rst'
+      glob:
+        - '*.rst'
+        - '*.rst.txt'
       run: '{run_python} doc8 {staged_files}'
