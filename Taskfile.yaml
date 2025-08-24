@@ -8,6 +8,7 @@ tasks:
     description: 'Setup workspace for development'
     cmds:
       - 'bun install'
+      - 'lefthook install'
   verify:
     description: 'Health check all files'
     cmds:
