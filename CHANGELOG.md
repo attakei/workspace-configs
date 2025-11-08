@@ -1,5 +1,12 @@
 # Changelogs
 
+## 0.7.0
+
+Date: 2025-11-08 - Asia/Tokyo
+
+- Update python projects:
+  - When Ruff make changes in process, it commit changes.
+
 ## 0.6.0
 
 Date: 2025-08-25 - Asia/Tokyo
