@@ -19,8 +19,10 @@ pre-commit:
         jobs:
           - name: 'format'
             run: '{run_python} ruff format {staged_files}'
+            stage_fixed: true
           - name: 'lint'
             run: '{run_python} ruff check --fix {staged_files}'
+            stage_fixed: true
   commands:
     ty:
       glob: '*.py'
