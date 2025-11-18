@@ -1,5 +1,12 @@
 # Changelogs
 
+## 0.7.1
+
+Date: 2025-11-18 - Asia/Tokyo
+
+- New feature: sphinx-doc project
+  - Add vars to append extra options
+
 ## 0.7.0
 
 Date: 2025-11-08 - Asia/Tokyo

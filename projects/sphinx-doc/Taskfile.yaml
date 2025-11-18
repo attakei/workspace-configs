@@ -3,7 +3,7 @@
 #
 # Usage:
 #   - Copy this file, save into repos and include it.
-#   - Include directly (experimental features) 
+#   - Include directly (experimental features)
 # -----------------
 version: '3'
 
