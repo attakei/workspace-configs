@@ -13,10 +13,13 @@ vars:
   SPHINX_SOURCE_DIR: '{{ default "." .SPHINX_SOURCE_DIR }}'
   SPHINX_OUTPUT_DIR: '{{ default "_build" .SPHINX_OUTPUT_DIR }}'
   SPHINX_DEFAULT_BUILDER: '{{ default "dirhtml" .SPHINX_DEFAULT_BUILDER }}'
+  # For build ('build-*' task)
+  SPHINX_BUILD_EXTRA_OPTIONS: '{{ default "" .SPHINX_BUILD_EXTRA_OPTIONS }}'
   # For i18n ('intl' task)
   SPHINX_ADDITIONAL_LANGUAGES: '{{ default "ja" .SPHINX_EXTRA_LANGUAGES  }}'
   # For API documentations ('apidoc' task)
   SPHINX_APIDOC_DIR: '{{ default "api/" .SPHINX_APIDOC_DIR }}'
+  SPHINX_APIDOC_EXTRA_OPTIONS: '{{ default "--no-toc" .SPHINX_APIDOC_EXTRA_OPTIONS }}'
   SPHINX_APIDOC_PACKAGE_PATH: '{{ .SPHINX_APIDOC_PACKAGE_PATH }}'
 
 tasks:
@@ -41,7 +44,8 @@ tasks:
     cmds:
       - >
         {{.RUN_PYTHON}} sphinx-apidoc
-        --remove-old --separate --no-toc
+        --remove-old --separate
+        {{.SPHINX_APIDOC_EXTRA_OPTIONS}}
         --output-dir={{.SPHINX_APIDOC_DIR}}
         {{.SPHINX_APIDOC_PACKAGE_PATH}}
   build-*:
@@ -53,6 +57,7 @@ tasks:
       - >
         {{.RUN_PYTHON}} sphinx-build
         -M {{.TARGET}}
+        {{.SPHINX_BUILD_EXTRA_OPTIONS}}
         {{.SPHINX_SOURCE_DIR}} {{.SPHINX_OUTPUT_DIR}}
         {{.CLI_ARGS}}
   build:
