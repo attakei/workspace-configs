@@ -36,7 +36,7 @@ tasks:
       - >
         {{.RUN_PYTHON}} sphinx-autobuild
         -b {{.SPHINX_DEFAULT_BUILDER}}
-        {{.SPHINX_SOURCE_DIR}} {{.SPHINX_OUTPUT_DIR}}/{{.SPHINX_DEFAULT_BUILD}}
+        {{.SPHINX_SOURCE_DIR}} {{.SPHINX_OUTPUT_DIR}}/{{.SPHINX_DEFAULT_BUILDER}}
         {{.CLI_ARGS}}
   apidoc:
     desc: 'Update apidoc'
