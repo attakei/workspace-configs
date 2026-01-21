@@ -28,7 +28,7 @@ tasks:
     dir: '{{.SPHINX_ROOT_DIR}}'
     cmds:
       - '{{.RUN_PYTHON}} sphinx-build -M gettext {{.SPHINX_SOURCE_DIR}} {{.SPHINX_OUTPUT_DIR}} {{.CLI_ARGS}}'
-      - '{{.RUN_PYTHON}} sphinx-intl update --language={{.SPHINX_ADDITIONAL_LANGUAGES | join ","}}'
+      - '{{.RUN_PYTHON}} sphinx-intl update --pot-dir={{.SPHINX_OUTPUT_DIR}}/gettext/ --language={{.SPHINX_ADDITIONAL_LANGUAGES | join ","}}'
   dev:
     desc: 'Run docs server'
     dir: '{{.SPHINX_ROOT_DIR}}'
