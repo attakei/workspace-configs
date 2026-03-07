@@ -13,5 +13,5 @@ registries:
 packages:
 - name: biomejs/biome@cli/v1.9.4
 - name: go-task/task@v3.48.0
-- name: evilmartians/lefthook@v2.1.2
+- name: evilmartians/lefthook@v2.1.3
 - name: oven-sh/bun@bun-v1.3.10
