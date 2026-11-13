@@ -18,10 +18,10 @@ jobs:
   lint-all:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: aquaproj/aqua-installer@11dd79b4e498d471a9385aa9fb7f62bb5f52a73c  # v4.0.4
+      - uses: actions/checkout@v7
+      - uses: aquaproj/aqua-installer@611554c6f0137ba41c8dd15aca8bee82504ea461  # v4.1.1
         with:
-          aqua_version: v2.56.4
+          aqua_version: v2.66.1
       - name: Set up workspace
         run: |
           task setup
@@ -31,10 +31,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: aquaproj/aqua-installer@11dd79b4e498d471a9385aa9fb7f62bb5f52a73c  # v4.0.4
+      - uses: actions/checkout@v7
+      - uses: aquaproj/aqua-installer@611554c6f0137ba41c8dd15aca8bee82504ea461  # v4.1.1
         with:
-          aqua_version: v2.56.4
+          aqua_version: v2.66.1
       - name: Set up workspace
         run: |
           task setup
