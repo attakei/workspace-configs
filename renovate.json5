@@ -7,8 +7,23 @@
   ],
   "timezone": "Asia/Tokyo",
   "schedule": [
-    "* 9-21 * * 0,6",
+    "before 10am on the first day of the month",
   ],
   // NOTE: Set explicitly false when you want not to merge automately.
   "automerge": true,
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "minor and patch updates",
+    },
+    // 純粋なsemverではないパッケージ（minorでも破壊的変更がありえるもの）
+    // 必要に応じて各リポジトリでmatchPackageNamesを指定
+    // 例: python, nodejs などのランタイム系
+    // {
+    //   "matchPackageNames": ["python", "nodejs"],
+    //   "matchUpdateTypes": ["minor"],
+    //   "automerge": false,
+    //   "groupName": null,
+    // },
+  ],
 }
