@@ -1,0 +1,32 @@
+exclude = [
+    # Edit automatically by aqua
+    "aqua.yaml",
+]
+
+[files]
+yaml = [
+    "*.yaml",
+    "*.yml",
+    ".yamllint",
+]
+
+[lint.rules.line-length]
+max = 150
+
+[lint.rules.comments]
+level = "warning"
+
+[lint.rules.comments-indentation]
+level = "warning"
+
+[lint.rules.document-start]
+level = "warning"
+
+[lint.rules.truthy]
+level = "warning"
+
+[[lint.per-line-ignores]]
+path = "./.github/workflows/*.yaml"
+rules = [
+    "truthy",
+]
