@@ -15,3 +15,6 @@ packages:
 - name: go-task/task@v3.54.0
 - name: evilmartians/lefthook@v2.2.2
 - name: oven-sh/bun@bun-v1.4.4
+- name: jdx/jactionlint@v2.6.0
+- name: editorconfig-checker/editorconfig-checker@v4.0.2
+- name: owenlamont/ryl@v0.29.0
