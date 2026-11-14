@@ -1,3 +1,4 @@
+---
 # ------
 # Hooks for workspace-configs itself.
 # ------
@@ -5,8 +6,22 @@ min_version: 1.10.10
 
 pre-commit:
   parallel: true
-  commands:
-    biome:
+  jobs:
+    - name: 'EditorConfig'
+      glob: '*.*'
+      run: 'editorconfig-checker -fix {staged_files}'
+      stage_fixed: true
+    - name: 'YAML'
+      glob: '*.yaml'
+      run: 'ryl check --fix {staged_files}'
+      stage_fixed: true
+    - name: 'GitHub Actions'
+      glob: '.github/workflows/*.yaml'
+      # TODO: upgrade profile
+      # https://github.com/jdx/jactionlint/blob/main/README.md#adopt-it-on-an-existing-repository
+      run: 'jactionlint --profile correctness --shellcheck= --fix {staged_files}'
+      stage_fixed: true
+    - name: 'Biome'
       glob: '*.{ts,json,jsonc}'
       run: 'bun x biome check --write {staged_files}'
       stage_fixed: true
