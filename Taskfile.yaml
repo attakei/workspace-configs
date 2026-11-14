@@ -14,7 +14,7 @@ tasks:
     description: 'Health check all files'
     cmds:
       - 'lefthook run pre-commit --all-files'
-      - 'bun x renovate-config-validator renovate/*'
+      - 'bunx --bun renovate-config-validator renovate/*'
   dry-run:
     description: 'Dry run Renovate.'
     env:
@@ -24,7 +24,7 @@ tasks:
     vars:
       repo_name: '{{ default "attakei/workspace-configs" .CLI_ARGS }}'
     cmds:
-      - 'bun x renovate --dry-run --schedule= --require-config=ignored {{.repo_name}}'
+      - 'bunx --bun renovate --dry-run --schedule= --require-config=ignored {{.repo_name}}'
   release-*:
     desc: 'Run release process'
     vars:
