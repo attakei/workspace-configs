@@ -1,4 +1,4 @@
-import yaml from "js-yaml";
+import { load, loadAll } from "js-yaml";
 import jsonata from "jsonata";
 
 import renovateConfig from "../renovate/lefthook.json" with { type: "json" };
@@ -26,13 +26,13 @@ describe("YAML monitor", () => {
   });
   describe("matchString (try JSONata)", () => {
     test("None remotes", async () => {
-      const data = yaml.load("");
+      const data = loadAll("")[0];
       const exp = jsonata(renovateConfig.customManagers[0].matchStrings[0]);
       const result = await exp.evaluate(data);
       expect(result).toBeUndefined();
     });
     test("Valid", async () => {
-      const data = yaml.load(`
+      const data = load(`
         remotes:
           - git_url: 'https://github.com/attakei/workspace-configs'
             ref: 'v0.2.0'
