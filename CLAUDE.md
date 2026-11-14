@@ -64,7 +64,7 @@ The most complex part of this system is the custom Renovate managers that use JS
 
 The JSONata expression in `renovate/taskfile.json` parses Taskfile includes like:
 ```
-$map(includes.*.{ "taskfile": taskfile }[taskfile ~> /github\.com\/.+\.git/], function($v) {{ "depName": $match($v.taskfile, /github.com\/(.+)\.git/, 1).groups[0], "currentValue": $match($v.taskfile, /\?(tag|ref)=(.+)/, 1).groups[1] }})
+$map(includes.*.{ "taskfile": taskfile }[taskfile ~> /github\.com\/.+\.git/], function($v) { { "depName": $match($v.taskfile, /github.com\/(.+)\.git/, 1).groups[0], "currentValue": $match($v.taskfile, /\?(tag|ref)=(.+)/, 1).groups[1] } })
 ```
 
 #### Project Templates
