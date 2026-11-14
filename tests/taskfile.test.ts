@@ -1,4 +1,4 @@
-import yaml from "js-yaml";
+import { load, loadAll } from "js-yaml";
 import jsonata from "jsonata";
 
 import renovateConfig from "../renovate/taskfile.json" with { type: "json" };
@@ -25,13 +25,13 @@ describe("YAML monitor", () => {
   });
   describe("matchString (try JSONata)", () => {
     test("None remotes", async () => {
-      const data = yaml.load("");
+      const data = loadAll("")[0];
       const exp = jsonata(renovateConfig.customManagers[0].matchStrings[0]);
       const result = await exp.evaluate(data);
       expect(result).toBeUndefined();
     });
     test("Matched single element", async () => {
-      const data = yaml.load(`
+      const data = load(`
       includes:
         docs:
           taskfile: 'https://github.com/attakei/workspace-configs.git//projects/sphinx-doc/Taskfile.yaml?tag=v0.2.0'
@@ -43,7 +43,7 @@ describe("YAML monitor", () => {
       expect(result.currentValue).toBe("v0.2.0");
     });
     test("Matched multiple elements", async () => {
-      const data = yaml.load(`
+      const data = load(`
       includes:
         demo:
           taskfile: 'https://github.com/attakei/workspace-configs.git//projects/sphinx-doc/Taskfile.yaml?tag=v0.2.0'
@@ -56,7 +56,7 @@ describe("YAML monitor", () => {
       expect(result).toHaveLength(2);
     });
     test("Matched one element only", async () => {
-      const data = yaml.load(`
+      const data = load(`
       includes:
         demo:
           taskfile: './demo'
@@ -70,7 +70,7 @@ describe("YAML monitor", () => {
       expect(result.currentValue).toBe("v0.2.0");
     });
     test("Unmatched local", async () => {
-      const data = yaml.load(`
+      const data = load(`
       includes:
         docs:
           taskfile: './docs/'
