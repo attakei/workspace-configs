@@ -1,5 +1,27 @@
 # Changelogs
 
+## 0.8.0
+
+Date: 2026-11-14 - Asia/Tokyo
+
+- New feature: Manage configurations per tools instead of project types.
+  - Add `lefthook/` for remote configs of Lefthook:
+    - `ruff.yaml` and `ty.yaml` (split from `projects/python/lefthook-astral.yaml`)
+    - `doc8.yaml` (copied from `projects/sphinx-doc/lefthook.yaml`)
+  - Add `taskfile/` for remote Taskfiles:
+    - `sphinx-doc.yaml` (copied from `projects/sphinx-doc/Taskfile.yaml`)
+- Deprecated: `projects/` folder.
+  It is no longer updated. Please use `lefthook/` and `taskfile/` instead.
+- Fix renovate presets:
+  - `taskfile` and `deno`: Avoid `{{` in JSONata expressions
+    to pass template validation of Renovate v44.
+- Update Renovate config of this repository:
+  - Run once a month and group minor/patch updates.
+- Misc:
+  - Add linters for EditorConfig, YAML (ryl) and GitHub Actions (jactionlint) into pre-commit hooks.
+  - Use `bunx --bun` instead of `bun x`.
+  - Update dependencies (Renovate v44, js-yaml v5, and tools managed by aqua).
+
 ## 0.7.2
 
 Date: 2026-01-22 - Asia/Tokyo
